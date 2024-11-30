@@ -1,0 +1,30 @@
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+
+class Config:
+    POSTGRES_USER = os.environ.get('POSTGRES_USER')
+    POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+    POSTGRES_PASSWORD_LOCAL = os.environ.get('POSTGRES_PASSWORD_LOCAL')
+    POSTGRES_PASSWORD_PRODUCTION = os.environ.get('POSTGRES_PASSWORD_PRODUCTION')
+    POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+    POSTGRES_HOST_LOCAL = os.environ.get('POSTGRES_HOST_LOCAL')
+    POSTGRES_HOST_PRODUCTION = os.environ.get('POSTGRES_HOST_PRODUCTION')
+    POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+    POSTGRES_DB = os.environ.get('POSTGRES_DB')
+    POSTGRES_DB_TEST = os.environ.get('POSTGRES_DB_TEST')
+    POSTGRES_OFFSET_DB = os.environ.get('POSTGRES_OFFSET_DB')
+    POSTGRES_DB_LOCAL = os.environ.get('POSTGRES_DB_LOCAL')
+
+    # Set the connection string
+    # local DB
+    DB_URL = f'postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}'
+    DB_URL_TEST = f'postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB_TEST}'
+    DB_URL_OFFSET = f'postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_OFFSET_DB}'
+    DB_URL_LOCAL = f'postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD_LOCAL}@{POSTGRES_HOST_LOCAL}:{POSTGRES_PORT}/{POSTGRES_DB_LOCAL}'
+    # production DB
+    DB_URL_PRODUCTION = f'postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD_PRODUCTION}@{POSTGRES_HOST_PRODUCTION}:{POSTGRES_PORT}/{POSTGRES_DB}'
+    LOGIN_PASSWORD = os.environ.get('LOGIN_PASSWORD')
+    COOKIE_SECRET = os.environ.get('COOKIE_SECRET')
